@@ -5,7 +5,7 @@ if(!$link){
 	die('connection to server failed:' . mysql_error());
 }
 
-mysql_select_db("rev",$link) or die(mysql_error());
+mysql_select_db("sleid",$link) or die(mysql_error());
 
 /*function districts(){
 	$ret=[];
@@ -242,7 +242,7 @@ while ($year<=$current_yr) {
 
 res(1);
 
-mysql_select_db("rev20151214",$link) or die(mysql_error());
+mysql_select_db("sleid",$link) or die(mysql_error());
 
 function getData2($year,$cond=1){
 	$ret=[];

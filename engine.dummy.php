@@ -5,7 +5,7 @@ if(!$link){
 	die('connection to server failed:' . mysql_error());
 }
 
-mysql_select_db("rev",$link) or die(mysql_error());
+mysql_select_db("sleid",$link) or die(mysql_error());
 
 /*function districts(){
 	$ret=[];

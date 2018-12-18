@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('meta-title', 'Uganda EID Dashboard')</title>
+    <title>@yield('meta-title', 'Sierra Leone EID Dashboard')</title>
     <link rel="Shortcut Icon" href="{{ asset('/images/icon.png') }}" />
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/jquery.dataTables.css') }}" rel="stylesheet">    
@@ -52,20 +52,20 @@
 <body ng-app="dashboard" ng-controller="DashController">
 
 <div class="navbar-custom navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <img src="{{ asset('/images/uganda_flag2.png') }}" style="width:100%;height:10px;margin:0px">
+    <!-- <img src="{{ asset('/images/uganda_flag2.png') }}" style="width:100%;height:10px;margin:0px"> -->
     <div class="container">
 
         <div class="navbar-header"> 
-            <a class="navbar-brand" href="/" style="font-weight:800px;color:#FFF"> UGANDA EID</a>
+            <a class="navbar-brand" href="/" style="font-weight:800px;color:#FFF"> SIERRA LEONE EID</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li id='l1' class='active'>{!! link_to("/","DASHBOARD",['class'=>'hdr']) !!}</li>  
                <!--  <li id='l2'>{!! link_to("/reports","REPORTS",['class'=>'hdr']) !!}</li>  -->  
-               <li id='l3'><a href='http://www.cphluganda.org/results'>RESULTS</a></li>         
+               <!-- <li id='l3'><a href='http://www.cphluganda.org/results'>RESULTS</a></li>          -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><span style="font-size: 30px;vertical-align: middle;margin-right:25px;"> <img src="{{ asset('/images/ug.png') }}" height="35" width="35"> </span></li>
+                <li><span style="font-size: 30px;vertical-align: middle;margin-right:25px;"> <img src="{{ asset('/images/coa.png') }}" height="35" width="35"> </span></li>
             </ul>
         </div>
 
@@ -251,14 +251,14 @@
                         <span class="desc">positivity rate</span>
                     </a>
                 </li>
-                <li id='tb_hd4'>
+               <!--  <li id='tb_hd4'>
                     <a href="#tab4" id='tb_lnk4' ng-click="displayInitiationRate()">
                         <span class="num ng-cloak" ng-model="initiated" ng-init="initiated=0">
                             <% ((initiated/hiv_positive_infants)*100)|number:1 %>% <sup>*</sup>
                         </span>
                         <span class="desc">initiation rate</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <div class="content-wrap">
