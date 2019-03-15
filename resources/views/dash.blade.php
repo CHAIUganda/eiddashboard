@@ -62,7 +62,7 @@
             <ul class="nav navbar-nav">
                 <li id='l1' class='active'>{!! link_to("/","DASHBOARD",['class'=>'hdr']) !!}</li>  
                <!--  <li id='l2'>{!! link_to("/reports","REPORTS",['class'=>'hdr']) !!}</li>  -->  
-               <!-- <li id='l3'><a href='http://www.cphluganda.org/results'>RESULTS</a></li>          -->
+               <li id='l3'><a href='{{ env('EID_SYS') }}'>LOGIN</a></li>         
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><span style="font-size: 30px;vertical-align: middle;margin-right:25px;"> <img src="{{ asset('/images/coa.png') }}" height="35" width="35"> </span></li>
@@ -159,7 +159,19 @@
 
         <span ng-model='filter_care_levels' ng-init='filter_care_levels={}'>
             <span ng-repeat="(cl_nr,cl_name) in filter_care_levels">
-                <span class="filter-val ng-cloak"> <% cl_name %> (a) <x class='glyphicon glyphicon-remove' ng-click='removeTag("care_level",cl_nr)'></x></span> 
+                <span class="filter-val ng-cloak"> <% cl_name %> (cl) <x class='glyphicon glyphicon-remove' ng-click='removeTag("care_level",cl_nr)'></x></span> 
+            </span>
+        </span>
+
+        <span ng-model='filter_genders' ng-init='filter_genders={}'>
+            <span ng-repeat="(g_nr,g_name) in filter_genders">
+                <span class="filter-val ng-cloak"> <% g_name %> (g) <x class='glyphicon glyphicon-remove' ng-click='removeTag("gender",g_nr)'></x></span> 
+            </span>
+        </span>
+
+        <span ng-model='filter_age_ranges' ng-init='filter_age_ranges={}'>
+            <span ng-repeat="(a_nr,a_name) in filter_age_ranges">
+                <span class="filter-val ng-cloak"> <% a_name %> (a) <x class='glyphicon glyphicon-remove' ng-click='removeTag("age_range",a_nr)'></x></span> 
             </span>
         </span>
 
@@ -169,7 +181,7 @@
 
      <table border='1' cellpadding='0' cellspacing='0' class='filter-tb'>
         <tr>
-            <td width='20%' >
+            <td width='15%' >
                 <span ng-model='fro_date_slct' ng-init='fro_date_slct={!! json_encode($months_by_years) !!}'></span>
                 <select ng-model="fro_date" ng-init="fro_date='all'">
                     <option value='all'>FROM DATE</option>
@@ -180,7 +192,7 @@
                     </optgroup>
                 </select>
             </td>
-            <td width='20%' >
+            <td width='15%' >
                 <span ng-model='to_date_slct' ng-init='to_date_slct={!! json_encode($months_by_years) !!}'></span>
                 <select ng-model="to_date" ng-init="to_date='all'" ng-change="dateFilter('to')">
                     <option value='all'>TO DATE</option>
@@ -191,7 +203,7 @@
                     </optgroup>
                 </select>
             </td>
-             <td width='20%'>
+             <td width='15%'>
                 <select ng-model="region" ng-init="region='all'" ng-change="filter('region')">
                     <option value='all'>REGIONS</option>
                     <option class="ng-cloak" ng-repeat="rg in regions_slct|orderBy:'name'" value="<% rg.id %>">
@@ -199,7 +211,7 @@
                     </option>
                 </select>
             </td>
-            <td width='20%'>
+            <td width='15%'>
                 <select ng-model="district" ng-init="district='all'" ng-change="filter('district')">
                     <option value='all'>DISTRICTS</option>
                     <option class="ng-cloak" ng-repeat="dist in districts_slct | orderBy:'name'" value="<% dist.id %>">
@@ -207,15 +219,32 @@
                     </option>
                 </select>
             </td>           
-            <td width='20%'>
+            <td width='15%'>
                 <select ng-model="care_level" ng-init="care_level='all'" ng-change="filter('care_level')">
                     <option value='all'>CARE LEVELS</option>
                     <option class="ng-cloak" ng-repeat="cl in care_levels_slct | orderBy:'name'" value="<% cl.id %>">
                         <% cl.name %>
                     </option>
                 </select>
+            </td>
+
+             <td width='10%'>
+                <select ng-model="gender" ng-init="gender='all'" ng-change="filter('gender')">
+                    <option value='all'>GENDER</option>
+                    <option class="ng-cloak" ng-repeat="gdr in gender_slct | orderBy:'name'" value="<% gdr.id %>">
+                        <% gdr.name %>
+                    </option>
+                </select>
             </td> 
 
+             <td width='15%'>
+                <select ng-model="age_range" ng-init="age_range='all'" ng-change="filter('age_range')">
+                    <option value='all'>AGE RANGE</option>
+                    <option class="ng-cloak" ng-repeat="ar in age_range_slct | orderBy:'name'" value="<% ar.id %>">
+                        <% ar.name %>
+                    </option>
+                </select>
+            </td> 
              
         </tr>
      </table>

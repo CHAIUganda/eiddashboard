@@ -44,6 +44,10 @@ app.filter('d_format', function() {
 var ctrllers={};
 
 ctrllers.DashController=function($scope,$http){
+    var gender_json={'MALE':'F', 'FEMALE':'F'};
+    $scope.gender_slct = [{'id':'MALE', 'name':'M'}, {'id':'FEMALE','name':'F'}];
+    var age_range_json={1:'6-8weeks', 2:'More than 8 weeks'};
+    $scope.age_range_slct = [{'id': 1,'name':'6-8weeks'}, { 'id':2,'name':'More than 8 weeks'}];
     var regions_json={};
     var dists_by_region={};
     var districts_json={};    
@@ -193,11 +197,21 @@ ctrllers.DashController=function($scope,$http){
             $scope.filter_care_levels[$scope.care_level]=care_levels_json[$scope.care_level];
             $scope.care_level='all';
             break;
+            case "gender":
+            $scope.filter_genders[$scope.gender]=gender_json[$scope.gender];
+            $scope.gender='all';
+            break;
+            case "age_range":
+            $scope.filter_age_ranges[$scope.age_range]=age_range_json[$scope.age_range];
+            $scope.age_range='all';
+            break;
         }
 
         delete $scope.filter_regions["all"];
         delete $scope.filter_districts["all"];        
         delete $scope.filter_care_levels["all"];
+        delete $scope.filter_genders["all"];
+        delete $scope.filter_age_ranges["all"];
 
         generalFilter(0); //filter the results for each required event
     }
@@ -208,13 +222,17 @@ ctrllers.DashController=function($scope,$http){
         var r_num=count($scope.filter_regions);
         var d_num=count($scope.filter_districts);
         var c_num=count($scope.filter_care_levels);
+        var g_num=count($scope.filter_genders);
+        var a_num=count($scope.filter_age_ranges);
 
         var time_eval=inArray(that.year_month,$scope.filter_duration);
         var reg_eval=$scope.filter_regions.hasOwnProperty(that.region_id);
         var dist_eval=$scope.filter_districts.hasOwnProperty(that.district_id);        
         var cl_eval=$scope.filter_care_levels.hasOwnProperty(that.care_level_id);
+        var g_eval=$scope.filter_genders.hasOwnProperty(that.gender);
+        var a_eval=$scope.filter_age_ranges.hasOwnProperty(that.age_range);
 
-        var eval1=r_num==0&&d_num==0&&c_num==0;     // regions(OFF) and districts(OFF) and care_levels (OFF)
+        var eval1=r_num==0&&d_num==0&&c_num==0&&g_eval==0&&a_eval==0;  ;     // regions(OFF) and districts(OFF) and care_levels (OFF)
         var eval2=reg_eval&&d_num==0&&c_num==0;     // regions(ON)  and districts(OFF) and care_levels (OFF)
         var eval3=(reg_eval||dist_eval)&&c_num==0;    // regions(ON)  or  districts(ON)  and care_levels (OFF)
         var eval4=reg_eval&&d_num==0&&cl_eval;      // regions(ON)  and districts(OFF) and care_levels (ON)
@@ -222,8 +240,11 @@ ctrllers.DashController=function($scope,$http){
         var eval6=r_num==0&&dist_eval&&cl_eval;     // regions(OFF) and districts(ON)  and care_levels (ON)
         var eval7=r_num==0&&dist_eval&&c_num==0;    // regions(OFF) and districts(ON)  and care_levels (OFF)
         var eval8=r_num==0&&d_num==0&&cl_eval;      // regions(OFF) and districts(OFF) and care_levels (ON)
+        var eval9 = g_eval==0&&a_eval;
+        var eval10 = g_eval&&a_eval==0;
+        var eval11 = g_eval&&a_eval;
 
-        if( time_eval && (eval1||eval2||eval3||eval4||eval5||eval6||eval7||eval8)){
+        if( time_eval && (eval1||eval2||eval3||eval4||eval5||eval6||eval7||eval8||eval9||eval10||eval11)){
             return true;
         }else{
             return false;
@@ -561,6 +582,8 @@ ctrllers.DashController=function($scope,$http){
             case "region": delete $scope.filter_regions[nr];break;
             case "district": delete $scope.filter_districts[nr];break;            
             case "care_level": delete $scope.filter_care_levels[nr];break;
+            case "gender": delete $scope.filter_genders[nr];break;
+            case "age_range": delete $scope.filter_age_ranges[nr];break;
         }
         $scope.filter(mode);
     };
@@ -569,6 +592,8 @@ ctrllers.DashController=function($scope,$http){
         $scope.filter_regions={};
         $scope.filter_districts={};        
         $scope.filter_care_levels={};
+        $scope.filter_genders={};
+        $scope.filter_age_ranges={};
 
         $scope.filter_duration=$scope.init_duration;
         $scope.filtered=false;

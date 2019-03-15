@@ -93,9 +93,9 @@ file_put_contents("../public/json/districts_by_region.json", json_encode($distri
 file_put_contents("../public/json/care_levels.json", json_encode($care_levels));
 file_put_contents("../public/json/facilities.json", json_encode($facilities));
 
-mysql_select_db($db2,$link) or die(mysql_error());
+//mysql_select_db($db2,$link) or die(mysql_error());
 
-function getData($year,$cond=1){
+/*function getData($year,$cond=1){
 	$ret=[];
 	$sql="SELECT count(s.ID) AS num,MONTH(s.datetested) AS mth,s.facility AS facility_id 
 		  FROM samples AS s
@@ -125,7 +125,7 @@ function getAges($year,$pcr){
 		$ret[$mth][$facility_id][]=cleanAge($infant_age);
 	}
 	return $ret;
-}
+}*/
 
 /*function getAges($year,$month,$facility_id,$pcr,$cond=1){
 	$ret=[];
@@ -177,7 +177,7 @@ global $kitutu_results;
 
 $all_results=[];
 $current_yr=date("Y");
-$year=2014;
+$year=2016;
 $x=1;
 while ($year<=$current_yr) {
 	$month=1;
@@ -191,43 +191,49 @@ while ($year<=$current_yr) {
 		$pcr_one_ages_res=getAges2($year,'FIRST');
 		$pcr_two_ages_res=getAges2($year,'SECOND');
 	}else{
-		$samples_received_res=getData($year);
-		$hpi_res=getData($year," result=2");
-		$i_res=getData($year," childEnrolledOnART='Yes'");
-		$pcr1_res=getData($year," pcr='1'");
-		$pcr2_res=getData($year," pcr='2'");
-		$pcr_one_ages_res=getAges($year,'1');
-		$pcr_two_ages_res=getAges($year,'2');
+		// $samples_received_res=getData($year);
+		// $hpi_res=getData($year," result=2");
+		// $i_res=getData($year," childEnrolledOnART='Yes'");
+		// $pcr1_res=getData($year," pcr='1'");
+		// $pcr2_res=getData($year," pcr='2'");
+		// $pcr_one_ages_res=getAges($year,'1');
+		// $pcr_two_ages_res=getAges($year,'2');
 	}
 
 	ksort($samples_received_res);	
 
 	foreach ($samples_received_res as $mth => $f_arr) {
-		foreach ($f_arr as $f_id => $num) {
-			$samples_received=$num;
-			$hpi= isset($hpi_res[$mth][$f_id])?$hpi_res[$mth][$f_id]:0;
-			$intd=isset($i_res[$mth][$f_id])?$i_res[$mth][$f_id]:0;
-			$pcr_one=isset($pcr1_res[$mth][$f_id])?$pcr1_res[$mth][$f_id]:0;
-			$pcr_two=isset($pcr2_res[$mth][$f_id])?$pcr2_res[$mth][$f_id]:0;
-			$pcr_one_ages=isset($pcr_one_ages_res[$mth][$f_id])?$pcr_one_ages_res[$mth][$f_id]:[];
-			$pcr_two_ages=isset($pcr_two_ages_res[$mth][$f_id])?$pcr_two_ages_res[$mth][$f_id]:[];
+		foreach ($f_arr as $f_id => $gender_arr) {
+			foreach ($gender_arr as $gender => $age_range_arr) {
+				foreach ($age_range_arr as $age_range => $num) {
+					$samples_received=$num;
+					$hpi= isset($hpi_res[$mth][$f_id][$gender][$age_range])?$hpi_res[$mth][$f_id][$gender][$age_range]:0;
+					$intd=isset($i_res[$mth][$f_id][$gender][$age_range])?$i_res[$mth][$f_id][$gender][$age_range]:0;
+					$pcr_one=isset($pcr1_res[$mth][$f_id][$gender][$age_range])?$pcr1_res[$mth][$f_id][$gender][$age_range]:0;
+					$pcr_two=isset($pcr2_res[$mth][$f_id][$gender][$age_range])?$pcr2_res[$mth][$f_id][$gender][$age_range]:0;
+					$pcr_one_ages=isset($pcr_one_ages_res[$mth][$f_id][$gender][$age_range])?$pcr_one_ages_res[$mth][$f_id][$gender][$age_range]:[];
+					$pcr_two_ages=isset($pcr_two_ages_res[$mth][$f_id][$gender][$age_range])?$pcr_two_ages_res[$mth][$f_id][$gender][$age_range]:[];
 
-			$rw=[
-			'month'=>$mth,
-			'year'=>$year,
-			'facility_id'=>$f_id,
-			'samples_received'=>$samples_received,
-			'hiv_positive_infants'=>$hpi,
-			'initiated'=>$intd,
-			'pcr_one'=>$pcr_one,
-			'pcr_two'=>$pcr_two,
-			'pcr_one_ages'=>$pcr_one_ages,
-			'pcr_two_ages'=>$pcr_two_ages
-			];
-			$results[]=$rw;
-			$all_results[]=$rw;
-			$kitutu_results[]=$rw;
-		echo "record :: $x\n";
+					$rw=[
+					'month'=>$mth,
+					'year'=>$year,
+					'facility_id'=>$f_id,
+					'gender'=>$gender,
+					'age_range'=>$age_range,
+					'samples_received'=>$samples_received,
+					'hiv_positive_infants'=>$hpi,
+					'initiated'=>$intd,
+					'pcr_one'=>$pcr_one,
+					'pcr_two'=>$pcr_two,
+					'pcr_one_ages'=>$pcr_one_ages,
+					'pcr_two_ages'=>$pcr_two_ages
+					];
+					$results[]=$rw;
+					$all_results[]=$rw;
+					$kitutu_results[]=$rw;
+					echo "record :: $x\n";
+				}
+			}
 		$x++;		
 		}
 
@@ -239,22 +245,24 @@ while ($year<=$current_yr) {
 //return $all_results;
 }
 
-res(1);
+//res(1);
 
 mysql_select_db($db3,$link) or die(mysql_error());
 
 function getData2($year,$cond=1){
 	$ret=[];
-	$sql="SELECT count(s.id) AS num,MONTH(s.date_results_entered) AS mth,facility_id FROM dbs_samples AS s 
+	$sql="SELECT count(s.id) AS num,MONTH(s.date_results_entered) AS mth,facility_id, infant_gender,
+		CASE WHEN REPLACE(infant_age, 'months', '')<=2 THEN 1 ELSE 2 END AS age_range
+	 	FROM dbs_samples AS s 
 		  LEFT JOIN batches AS b ON s.batch_id=b.id
 		  LEFT JOIN facilities AS f ON b.facility_id=f.id
 		  WHERE YEAR(s.date_results_entered)=$year AND s.PCR_test_requested='YES'  AND $cond
-		  GROUP BY facility_id,mth";
+		  GROUP BY facility_id,mth, infant_gender, age_range";
 	$res=mysql_query($sql);
 	$x=0;
 	while($row=mysql_fetch_array($res)){ 
 		extract($row);
-		$ret[$mth][$facility_id]=$num;
+		$ret[$mth][$facility_id][$infant_gender][$age_range]=$num;
 		$x++;
 	}
 	return $ret;
@@ -262,11 +270,13 @@ function getData2($year,$cond=1){
 
 function getAges2($year,$pcr){
 	$ret=[];
-	$sql="SELECT infant_age,MONTH(s.date_results_entered) AS mth,facility_id FROM dbs_samples AS s 
+	$sql="SELECT infant_age,MONTH(s.date_results_entered) AS mth,facility_id,infant_gender,
+		CASE WHEN REPLACE(infant_age, 'months', '')<=2 THEN 1 ELSE 2 END AS age_range
+	 FROM dbs_samples AS s 
 		  LEFT JOIN batches AS b ON s.batch_id=b.id
 		  LEFT JOIN facilities AS f ON b.facility_id=f.id
 		  WHERE YEAR(s.date_results_entered)=$year AND s.PCR_test_requested='YES' AND pcr='$pcr'
-		  GROUP BY facility_id,mth,infant_age";
+		  GROUP BY facility_id,mth,infant_age, infant_gender, age_range";
 	$res=mysql_query($sql);
 	while($row=mysql_fetch_array($res)){ 
 		extract($row);
