@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: EID
+        psr4_prefix: EID
+        src_path: app

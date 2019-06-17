@@ -1,0 +1,397 @@
+#save_btn_hide{
+	display: none;
+}
+
+.rm_item{
+	color: red;
+}
+
+.add_item{
+	color: green;
+}
+
+.rm_item,.add_item{
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.input_bg{
+	width: 600px;
+}
+
+.input_md{
+	width: 350px;
+}
+
+.input_sm{
+	width: 200px;
+}
+
+.input_tn{
+	width: 50px;
+}
+
+#top-menu .current a
+{
+    color: orange !important;
+}
+
+/*table tr th,table thead tr{
+	background-color: #337ab7;
+	color: white;
+}*/
+
+.td_label label,.td_label{
+	text-align: left;
+	font-weight: bold;
+	background-color: #f5f5f5;
+	border-spacing: 10px;
+}
+
+.borderless td,.borderless th{
+	border: none;
+}
+
+.status,.status_ok,.status_danger{
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.status_danger{
+	color: red;
+}
+
+.status_ok{
+	color: green;
+}
+
+.status_highlite{
+	color: #663300; 
+	font-weight: bold;
+}
+
+.live_drpdwn{
+	min-width: 20%;
+	max-height: 300px;
+	border: 1px solid  #D2B9D3;
+	background-color: #DDE1EC;
+	position: absolute;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    width: 100px;
+    padding-left:5px;
+    overflow-y:auto;
+}
+
+.blue-icon-md,.blue-icon{
+	color: #337ab7;
+}
+
+.blue-icon-md{
+	font-size: 40px;
+}
+
+body{
+	padding-top: 60px;
+}
+
+.navbar-custom .navbar-nav > li > a:hover, .navbar-custom .navbar-nav > li > a:focus {
+background-color: #346290;
+}
+
+.navbar-custom .navbar-nav > .active > a, .navbar-custom .navbar-nav > .active >
+ a:hover, .navbar-custom .navbar-nav > .active > a:focus {
+color: white; /*BACKGROUND color for active*/
+background-color: #346290;
+}
+
+  .navbar-custom {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+ .navbar-custom .dropdown-menu > li > a:hover,
+  .navbar-custom .dropdown-menu > li > a:focus {
+    color: #3572b0;
+   text-decoration: none;
+   }
+
+ .navbar-custom .nav > li > a:hover,
+ .navbar-custom .nav > li > a:focus,
+ .navbar-custom .navbar-nav > .open > a:focus,
+ .navbar-inverse .navbar-nav > .open > a {
+    text-decoration: none;
+    background-color: #346290; /*Change rollover cell color here*/
+  }
+
+
+  .navbar-custom .navbar-nav > li > a {
+   color: white; /*Change active text color here*/
+   font-size: 15px;
+    }
+
+.nice_red{
+	color: #610B0B;
+}
+
+.blue-link:hover,.blue-link:focus, .blue-link:visited{
+	text-decoration: none;
+}
+
+.blue-link{
+	cursor: pointer;
+}
+
+
+.dsktp{
+	text-align: center;/*
+	background-color: #FFFFCC;
+	border-radius:5px 5px 5px 5px;
+	border: 2px solid  #FFAA33;*/
+	height: auto;
+	width: 80px;
+}
+
+.dsktp:hover {
+	border:3px;
+	/*background: url(../../gui/img/orange9.png);*/
+	/*border-radius:5px 5px 5px 5px;*/
+	text-decoration: none;
+}
+
+dsktp img{
+	background-color: yellow;
+}
+
+.menu{
+	background-color: #DCDCDC;
+}
+
+.btn-side{
+	float: right;
+}
+
+.home-headers{
+	font-size: 20px;
+	letter-spacing: 2px;
+	font: helvetica neue regular;
+}
+
+.hdr{
+	font-size: 15px;
+	letter-spacing: 1px;
+	font: helvetica neue regular;
+}
+
+.hdr-grey{
+	color: #808080;
+}
+
+.val-grey{	
+	color: #C0C0C0;
+}
+
+.home-links{
+	font-size: 16px;
+	letter-spacing: 2px;
+	font: helvetica neue regular;
+	text-align: center;
+	width: 250px;
+	height: 138px;
+	border: 1px solid;
+	border-radius: 5px; 
+}
+
+.home-links img{
+	height: 60px;
+	width: 60px;
+}
+
+.home-links a{
+	text-decoration: none;
+}
+
+.home-links:hover{
+	/*background-color: #DCDCDC;*/
+	cursor: pointer;
+	/*-webkit-box-shadow: 0px 0px 10px #888888;
+    box-shadow: 0px 0px 10px #888888;*/
+}
+
+.home{
+	color: #2E79B9;
+	border-color: #2E79B9;
+}
+
+.home:hover{
+	-webkit-box-shadow: 0px 0px 10px  #2E79B9;
+    box-shadow: 0px 0px 10px  #2E79B9;
+}
+
+.eid{
+	color: #388E3C;
+	border-color: #388E3C;
+}
+
+.eid:hover{
+	-webkit-box-shadow: 0px 0px 10px #388E3C;
+    box-shadow: 0px 0px 10px #388E3C;
+}
+
+.scd{
+	color: #44057C;
+	border-color: #44057C; 
+}
+
+.admin{
+	color: #FA9100;
+	border-color: #FA9100;
+}
+
+.admin:hover{
+	-webkit-box-shadow: 0px 0px 10px #FA9100;
+	 box-shadow: 0px 0px 10px #FA9100;
+}
+
+.home-glyphicon{
+	font-size:50px;
+}
+
+/*nnnn*/
+
+.tab-labels{
+    margin: 10px;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+
+.tab-sm-ttl{
+    font-size: 11px;
+}
+
+.db-charts{
+    width: 550px;
+    height: 350px;
+}
+
+div.addition-metrics{ 
+    padding: 10px; 
+    min-height: 80px;
+    border:1px solid #C0C0C0;
+    text-align: center;
+}
+
+.addition-metrics.figure,.addition-metrics.desc{
+    color: #74777b;
+    font-family: helvetica neue regular;
+    text-transform: uppercase;
+	line-height: 25px;
+}
+
+.addition-metrics.figure{
+    font-size: 25px;
+}
+
+.addition-metrics.desc{
+    font-size: 13px;
+}
+
+.filter-tb {
+    border:1px solid #C0C0C0;;
+    color: #74777b;
+    text-align: center;
+    width: 100%;
+    font-size: 15px;
+}
+
+.filter-tb select{
+    border:0px;
+    width: 100%;
+    background-color: white;
+}
+
+.filter-tb select option{
+    border-bottom:1px solid #C0C0C0;
+}
+
+.filter-tb select option:hover,
+.filter-tb select option:focus{
+	background-color: #90B4FF; /*blue for filters*/
+}
+
+.sm_box{
+    width:18px;
+    height: 18px;
+    border:0px
+}
+
+.sm_box.national{   
+    background-color:#6D6D6D;
+}
+
+.sm_box.hiv-positive-numbers{
+    background-color:#357BB8;
+}
+
+.sm_box.uptake{
+    background-color:#5EA361;
+}
+
+.sm_box.init-rate{
+    background-color:#F5A623;
+}
+
+.sm_box.hiv-positive-average{
+    background-color:#9F82D1;
+}
+
+.table.facilities{
+    font-size:12px;
+}
+
+.table.facilities tr,.table.facilities th{
+    height: 10px;    
+}
+
+.table.facilities thead tr{
+    background-color: #C0C0C0;
+    color: black;
+}
+
+.filter-val{
+	color: #fff;
+	background-color: #337ab7;
+	padding: 10px;
+	border-radius: 20px;
+}
+
+.facilties-sect{
+	font-size: 11px;
+	padding-left: 50px;
+}
+
+.facilties-sect table tr th,
+.facilties-sect table thead tr,
+.facilties-sect table tbody tr{
+	height: 12px;
+}
+
+.facilities-sect-hiv-pstv table tbody tr{
+	color: #357BB8;
+}
+
+.facilities-sect-uptake table tbody tr{
+	color: #5EA361;
+}
+
+.facilities-sect-init-rates table tbody tr{
+	color: #F5A623;
+}
+
+.facilities-sect-pstv-rates table tbody tr{
+	color: #9F82D1;
+}
+
+
