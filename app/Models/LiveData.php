@@ -66,7 +66,7 @@ class LiveData extends Model
 		inner join districts d on d.id = f.districtID
 
 		where s.PCR_test_requested like 'YES' 
-		and year(s.date_dbs_taken)=$year";
+		and year(s.date_dbs_tested)=$year";
 
 		$samples = \DB::connection('live_db')->select($sql);
 

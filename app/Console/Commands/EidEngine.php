@@ -44,12 +44,12 @@ class EidEngine extends Command
         //
         $this->comment("Engine has started at :: ".date('YmdHis'));
         
-        /*
+        
         $this->_loadHubs();
         $this->_loadDistricts();
         $this->_loadRegions();
         $this->_loadCareLevels();
-        $this->_loadFacilities();*/
+        $this->_loadFacilities();
 
         $this->_loadData();
         
