@@ -274,6 +274,11 @@
                 <span class="filter-val ng-cloak"> <% g_name %> (g) <x class='glyphicon glyphicon-remove' ng-click='removeTag("gender",g_nr)'></x></span> 
             </span>
         </span>
+        <span ng-model='filter_age_group' ng-init='filter_age_group={}'>
+            <span ng-repeat="(ag_nr,ag_name) in filter_age_group">
+                <span class="filter-val ng-cloak"> <% ag_name %> (ag) <x class='glyphicon glyphicon-remove' ng-click='removeTag("age_group",ag_nr)'></x></span> 
+            </span>
+        </span>
         <span ng-model='filter_regions' ng-init='filter_regions={}'>
             <span ng-repeat="(r_nr,r_name) in filter_regions">
                 <span class="filter-val ng-cloak"> <% r_name %> (r) <x class='glyphicon glyphicon-remove' ng-click='removeTag("region",r_nr)'></x></span> 
@@ -340,6 +345,16 @@
                 </select>
             </td>
             <td width='9%'>
+                <select ng-model="age_group" ng-init="age_group='all'" ng-change="filter('age_group')">
+                    <option value='all'>Age</option>
+                    <option class="ng-cloak" ng-repeat="ag in age_groups_sclt|orderBy:'name' " value="<% ag.id %>">
+                        <% ag.name %>
+                    </option>
+                </select>
+
+            </td>
+           
+          <!--   <td width='9%'>
                 <select ng-model="from_age" ng-init="from_age='all'">
                     <option value='all'>From Age</option>
                     <option class="ng-cloak" ng-repeat="fro_age in from_age_slct|orderBy:'name' " value="<% fro_age %>">
@@ -355,7 +370,7 @@
                         <% to_age.name %>
                     </option>
                 </select>
-            </td>
+            </td> -->
             <td width='9%'>
                 <select ng-model="gender" ng-init="gender='all'" ng-change="filter('gender')">
                     <option value='all'>SEX</option>
@@ -398,14 +413,14 @@
             </td>  -->
             <!-- new filters-->
             
-            <td width='9%'>
+            <!-- <td width='9%'>
                 <select ng-model="pcrs" ng-init="pcrs='all'" ng-change="filter('pcr')">
                     <option value='all'>PCR</option>
                     <option class="ng-cloak" ng-repeat="pcr_instance in pcrs_slct | orderBy:'name'" value="<% pcr_instance.id %>">
                         <% pcr_instance.name %>
                     </option>
                 </select>
-            </td>
+            </td> -->
              
             <!--  <td width='9%'>
                 <select ng-model="mother_prophylaxes" ng-init="mother_prophylaxes='all'" ng-change="filter('mother_prophylaxis')">

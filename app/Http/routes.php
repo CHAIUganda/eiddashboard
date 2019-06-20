@@ -20,7 +20,7 @@ Route::get('/',function(){
 	$prev_logs=(file_exists("json/access.logs.json"))?file_get_contents("json/access.logs.json"):"";
 	$logs=$prev_logs.",{'accessed_at':'$time_now'}";
 	$msge="accessed at:".date("Y-m-d H:i:s");
-	file_put_contents("json/access.logs.json",$logs);
+	//file_put_contents("json/access.logs.json",$logs);
 	return view('dash'); 
 });
 

@@ -64,10 +64,12 @@ ctrllers.DashController=function($scope,$http){
     $scope.show_art_init = true;
     $scope.show_results_printing = true;
 
+    $scope.age_groups={'a':'6-8 weeks', 'b':'>8 weeks'};
+
 
     $scope.params = {
         'districts':[],'hubs':[],'regions':[],'care_levels':[],'age_ranges':[],'genders':[],'pcrs':[],
-        'mother_prophylaxes':[],'infant_prophylaxes':[]
+        'mother_prophylaxes':[],'infant_prophylaxes':[], 'age_groups':[]
     };
 
 
@@ -109,6 +111,8 @@ ctrllers.DashController=function($scope,$http){
     $http.get("../json/gender.json").success(function(data){
         gender_json=data||{};
         $scope.gender_slct=pairize(gender_json);
+        age_group_json={'a':'6-8 weeks', 'b':'>8 weeks'};
+        $scope.age_groups_sclt = pairize($scope.age_groups);
         //initializeSys();        
     });
     $http.get("../json/pcrs.json").success(function(data){
@@ -241,6 +245,7 @@ ctrllers.DashController=function($scope,$http){
             prms.care_levels = JSON.stringify($scope.params.care_levels);
             prms.genders = JSON.stringify($scope.params.genders);
             prms.pcrs = JSON.stringify($scope.params.pcrs);
+            prms.age_groups = JSON.stringify($scope.params.age_groups);
             prms.source = $scope.source_val;
            
             $http({method:'GET',url:"/live/",params:prms}).success(function(data) {
@@ -688,6 +693,11 @@ ctrllers.DashController=function($scope,$http){
                 $scope.params.genders.push(convertGenderInSex($scope.gender));
                 $scope.gender='all';
                 break;
+            case "age_group":
+                $scope.filter_age_group[$scope.age_group]=age_group_json[$scope.age_group];
+                $scope.params.age_groups.push($scope.age_group);
+                $scope.age_group='all';
+                break;
             case "pcr":
                 $scope.filter_pcrs[$scope.pcrs]=pcrs_json[$scope.pcrs];
                 $scope.params.pcrs.push(convertPcrIDsToValues($scope.pcrs));
@@ -727,6 +737,7 @@ ctrllers.DashController=function($scope,$http){
         delete $scope.filter_pcrs["all"];
         delete $scope.filter_hubs["all"];
         delete $scope.filtered_age_range["all"];
+        delete $scope.filter_age_group["all"];
 
         getData();
     }
@@ -1410,6 +1421,7 @@ ctrllers.DashController=function($scope,$http){
             case "gender": delete $scope.filter_gender[nr];break;
             case "pcr": delete $scope.filter_pcrs[nr];break;
             case "hub": delete $scope.filter_hubs[nr];break;
+            case "age_group": delete $scope.filter_age_group[nr];break;
             case "age_range": 
                 delete $scope.filtered_age_range[nr];
                 $scope.params.age_ranges=removeAgeGroup(nr,$scope.params.age_ranges);
@@ -1437,6 +1449,7 @@ ctrllers.DashController=function($scope,$http){
         $scope.filter_gender={};
         $scope.filter_pcrs={};
         $scope.filter_hubs={};
+        $scope.filter_age_group={};
 
         $scope.filter_duration=$scope.init_duration;
         $scope.filtered=false;

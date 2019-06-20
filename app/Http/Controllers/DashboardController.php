@@ -187,6 +187,7 @@ class DashboardController extends Controller {
 		if(!empty($care_levels)&&$care_levels!='[]') $conds['$and'][]=[ 'care_level_id'=>  ['$in'=> json_decode($care_levels)] ];
 
 		if(!empty($genders)&&$genders!='[]') $conds['$and'][]=[ 'sex'=>  ['$in'=> json_decode($genders)] ];
+		if(!empty($age_groups)&&$age_groups!='[]') $conds['$and'][]=[ 'age_group'=>  ['$in'=> json_decode($age_groups)] ];
 		if(!empty($pcrs)&&$pcrs!='[]') $conds['$and'][]=[ 'pcr'=>  ['$in'=> json_decode($pcrs)] ];
 			
 		return $conds;

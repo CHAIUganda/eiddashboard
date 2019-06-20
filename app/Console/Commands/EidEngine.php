@@ -82,7 +82,7 @@ class EidEngine extends Command
                     $data['care_level_id']=isset($s->care_level_id)?(int)$s->care_level_id:0;
                     $data["facility_id"] = isset($s->facility_id)?(int)$s->facility_id:0;
 
-                    $data["age_in_months"] = isset($s->age_in_months)?(int)$s->age_in_months:-1;
+                    $data["age_group"] = $s->infant_age>8?'b':'a';
                  
                     $data["sex"] = isset($s->sex)?$s->sex:0;
                     
