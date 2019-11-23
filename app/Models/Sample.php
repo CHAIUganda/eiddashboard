@@ -139,7 +139,7 @@ class Sample extends Model {
 		$res=Sample::leftjoin("batches AS b","b.id","=","s.batch_id")
 				->leftjoin("facilities AS f","f.id","=","b.facility_id")
 				->leftjoin("districts AS d","d.id","=","f.districtID")
-				->select(\DB::raw("d.regionID,f.facilityLevelID,f.facility,f.districtID,b.facility_id,month(date_results_entered) AS mth, count(s.id) AS number"))
+				->select(\DB::raw("d.regionID, d.district,f.facilityLevelID,f.facility,f.districtID,b.facility_id,month(date_results_entered) AS mth, count(s.id) AS number"))
 				->from("dbs_samples AS s")
 				->whereYear('s.date_results_entered','=',$year);
 		$res=$postives==1?$res->where('s.accepted_result','=','POSITIVE'):$res;

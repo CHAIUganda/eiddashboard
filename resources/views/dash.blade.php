@@ -546,6 +546,7 @@
                             <thead>
                                 <tr>
                                     <th width='40%'>Facility</th>
+                                    <th>District</th>
                                     <th width='10%'>Total Tests</th>
                                     
                                     <th width='10%'>Total 1<sup>st</sup> PCR</th>
@@ -560,7 +561,8 @@
                             </thead>
                             <tbody>                                
                                 <tr ng-repeat="f in facility_numbers" >
-                                    <td class="ng-cloak"><% facilities_lables[f._id] %></td>
+                                    <td class="ng-cloak"><% facilities_lables[f._id.f_id] %></td>
+                                    <td class="ng-cloak"><% districts_lables[f._id.d_id] %></td>
                                     <td class="ng-cloak"><% f.total_tests|number %></td>
 
                                     <td class="ng-cloak"><% f.pcr_one|number %></td>
@@ -637,13 +639,15 @@
                             <thead>
                                 <tr>
                                     <th width='80%'>Facility</th>
+                                    <th>District</th>
                                     <th width='10%'>Absolute Positives</th>
                                     <th width='10%'>Total Tests</th>
                                 </tr>
                             </thead>
                             <tbody>                                
                                 <tr ng-repeat="f in facility_numbers" >
-                                    <td class="ng-cloak"><% facilities_lables[f._id]%></td>
+                                   <td class="ng-cloak"><% facilities_lables[f._id.f_id] %></td>
+                                    <td class="ng-cloak"><% districts_lables[f._id.d_id] %></td>
                                     <td class="ng-cloak"><% f.hiv_positive_infants|number %></td>
                                     <td class="ng-cloak"><% f.total_tests|number %></td>
                                 </tr>                        
@@ -713,6 +717,7 @@
                             <thead>
                                 <tr>
                                     <th width='70%'>Facility</th>
+                                    <th>District</th>
                                     <th width='10%'>Positivity Rate</th>
                                     <th width='10%'>Absolute Positives</th>
                                     <th width='10%'>Total Tests</th>
@@ -720,7 +725,8 @@
                             </thead>
                             <tbody>                                
                                 <tr ng-repeat="f in facility_numbers" >
-                                    <td class="ng-cloak"><% facilities_lables[f._id] %></td>
+                                    <td class="ng-cloak"><% facilities_lables[f._id.f_id] %></td>
+                                    <td class="ng-cloak"><% districts_lables[f._id.d_id] %></td>
                                     <td class="ng-cloak"><% ((f.hiv_positive_infants/f.total_tests)*100)|number:1 %>%</td>
                                     <td class="ng-cloak"><% f.hiv_positive_infants|number %></td>
                                     <td class="ng-cloak"><% f.total_tests|number %></td>
@@ -789,13 +795,15 @@
                              <thead>
                                 <tr>
                                     <th width='80%'>Facility</th>
+                                    <th>District</th>
                                     <th width='10%'>Initiation Rate</th>
                                     <th width='10%'>Absolute Positives</th>                                   
                                 </tr>
                             </thead>
                             <tbody>                                
                                 <tr ng-repeat="f in facility_numbers" >
-                                    <td class="ng-cloak"><% facilities_lables[f._id] %></td>
+                                    <td class="ng-cloak"><% facilities_lables[f._id.f_id] %></td>
+                                    <td class="ng-cloak"><% districts_lables[f._id.d_id] %></td>
                                     <td class="ng-cloak"><% ((f.art_initiated/f.hiv_positive_infants)*100)|number:1 %>%</td>
                                     <td class="ng-cloak"><% f.hiv_positive_infants %></td>                    
                                 </tr>                        

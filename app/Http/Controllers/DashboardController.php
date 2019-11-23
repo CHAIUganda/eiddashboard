@@ -460,7 +460,7 @@ class DashboardController extends Controller {
 		$group_stage = array(
 
 			'$group' => array(
-				'_id' => '$facility_id', 
+				'_id' => array('f_id'=>'$facility_id', 'd_id'=>'$district_id'),
 				'total_tests' => array('$sum' => 1 ),
 				'pcr_one' => array('$sum' => array('$cond'=>array(array('$eq' => array('$pcr','FIRST')),1,0))),
 				'pcr_two' => array('$sum' => array('$cond'=>array(array('$eq' => array('$pcr','SECOND')),1,0))),
