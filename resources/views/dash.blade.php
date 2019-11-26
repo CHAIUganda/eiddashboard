@@ -169,7 +169,7 @@
             <ul class="nav navbar-nav">
                 <li id='l1' class='active'>{!! link_to("/","DASHBOARD",['class'=>'hdr']) !!}</li>  
                <!--  <li id='l2'>{!! link_to("/reports","REPORTS",['class'=>'hdr']) !!}</li>  -->  
-               <li id='l3'><a href='#'>RESULTS</a></li>         
+               <li id='l3'><a href='http://results.nas.gov.sl'>RESULTS</a></li>         
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><span style="font-size: 30px;vertical-align: middle;margin-right:25px;"> <img src="{{ asset('/images/coa.png') }}" height="35" width="35"> </span></li>
