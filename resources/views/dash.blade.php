@@ -228,7 +228,7 @@
     //print_r($init_duration);
      $months_by_years=yearByMonths(2014,1); 
      //krsort($months_by_years);
-     $filtering_info="Filters allow you to see aggregate data. So if you select Region: Central 1 and District: Gulu, you will see statistics for all facilties in Central 1 and Gulu. If you then select HCIII, it will filter the data to only show HCIII numbers for Central 1 and Gulu facilities.";
+     $filtering_info="Filters allow you to see aggregate data. Forexample, if you select Bo district, and then Kono, you are able to view data for both districts.";
      ?>
      <span ng-model="month_labels" ng-init='month_labels={!! json_encode(MyHTML::months()) !!}'></span>
      <span ng-model="filtered" ng-init='filtered=false'></span>

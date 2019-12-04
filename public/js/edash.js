@@ -364,7 +364,7 @@ ctrllers.DashController=function($scope,$http){
             var facilityRecord = facility_numbers_from_scope[index];
 
             var facility_instance = {                
-                facility_name : facility_details_labels[facilityRecord._id],
+                facility_name : facility_details_labels[facilityRecord._id.f_id],
                 total_tests : facilityRecord.total_tests,
                 total_first_pcr : facilityRecord.pcr_one,
                 total_second_pcr : facilityRecord.pcr_two    
@@ -434,7 +434,7 @@ ctrllers.DashController=function($scope,$http){
             var facilityRecord = facility_numbers_from_scope[index];
 
             var facility_instance = {                
-                facility_name : facility_details_labels[facilityRecord._id],
+                facility_name : facility_details_labels[facilityRecord._id.f_id],
                 hiv_positive_infants : facilityRecord.hiv_positive_infants,
                 total_tests : facilityRecord.total_tests,
             }
@@ -482,7 +482,7 @@ ctrllers.DashController=function($scope,$http){
             var positivityRate = Math.round((facilityRecord.hiv_positive_infants/facilityRecord.total_tests)*100);
 
             var facility_instance = {                
-                facility_name : facility_details_labels[facilityRecord._id],
+                facility_name : facility_details_labels[facilityRecord._id.f_id],
                 positivity_rate : positivityRate,
                 hiv_positive_infants : facilityRecord.hiv_positive_infants,
                 total_tests : facilityRecord.total_tests,
