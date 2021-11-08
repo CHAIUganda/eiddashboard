@@ -202,6 +202,10 @@ ctrllers.DashController=function($scope,$http){
     $http.get("/results_printing_stats/").success(function(data){
         $scope.facilities_array=data.facilities;
     });
+
+    $http.get("/poc_facility_stats/").success(function(data){
+        $scope.poc_facilities_array=data.pocfacilities;
+    });
    
     var initializeSys=function(){
         var d=new Date();
@@ -952,9 +956,11 @@ ctrllers.DashController=function($scope,$http){
         if(val=='poc'){
             $scope.show_art_init = false;
             $scope.show_results_printing = false;
+            $scope.show_poc_sites = true;
         }else{
             $scope.show_art_init = true;
             $scope.show_results_printing = true;
+            $scope.show_poc_sites = false;
         }
 
         getData();

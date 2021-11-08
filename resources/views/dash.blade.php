@@ -531,6 +531,12 @@
                         <span class="desc">Results Printing Status</span>
                     </a>
                 </li>
+                <li id='tb_hd6' ng-show="show_poc_sites">
+                    <a href="#tab6" id='tb_lnk6'>
+                        <span style="font-size:10px">POC Sites Status</span> 
+                        <span class="desc">POC Sites Status</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <div class="content-wrap">
@@ -968,6 +974,7 @@
                 <i style="font-size:12px;color:#9F82D1">* ART Initiation Rate is a preliminary estimate based on data collected at CPHL. CPHL is still revising the data collection mechanism</i>               
             </section -->
             <section id="tab5"> @include('sections._results_printing_statistics')</section>
+            <section id="tab6"> @include('sections._poc_sites_statistics')</section>
         </div><!-- /content -->
     </div><!-- /tabs -->
     <br>

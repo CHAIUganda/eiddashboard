@@ -30,6 +30,7 @@ Route::get('/reports',function(){
 Route::get("/live","DashboardController@live");
 Route::get("/other_data/","DashboardController@other_data");
 Route::get("/results_printing_stats/","DashboardController@getResultsPrintingStatistics");
+Route::get("/poc_facility_stats/","DashboardController@getPocFacilityStatistics");
 
 Route::get('/api/surge/{from_date}/{to_date}/', ['uses' => 'DashboardController@getSurgeTests']);
 

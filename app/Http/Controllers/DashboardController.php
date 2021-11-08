@@ -1237,6 +1237,24 @@ db.eid_dashboard.aggregate(
 
 	}
 
+	public function getPocFacilityStatistics(){
+
+			$sql = "SELECT district, facility, COUNT(DISTINCT facility) AS peripheral_sites, poc_device, max(created_at) AS latest_date,
+				COUNT(p.id) AS tests,  
+				SUM(CASE WHEN results='Negative' THEN 1 ELSE 0 END) AS negatives,
+				SUM(CASE WHEN results='Positive' THEN 1 ELSE 0 END) AS positives,
+				SUM(CASE WHEN results='Error' THEN 1 ELSE 0 END) AS errors
+				FROM poc_data AS p
+				LEFT JOIN facilities AS f ON p.facility_id=f.id
+				LEFT JOIN districts AS d ON f.districtID=d.id
+				GROUP BY testing_facility;";
+
+		    $pocfacilities = $this->db->select($sql);
+
+		    return compact('pocfacilities');
+
+	}
+
 	public function getSurgeTests(Request $request_parameters,$from_date,$to_date){
 		$error_message = "";
 		$surge_test_report  = array();
